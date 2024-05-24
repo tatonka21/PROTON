@@ -8,6 +8,7 @@ import array
 from PyQt5.QtCore import QObject, pyqtSignal
 import time
 import traceback
+import math
 
 os.system("")
 
@@ -243,7 +244,7 @@ class Matrix_Formulation_Class(QObject):
           # loop through the columns of the row and write each element to the file
           j=0
           for item in row:
-            if float(item) != 0.0:
+            if not math.isclose(float(item), 0.0, rel_tol=1e-09, abs_tol=0.0):
               f_G.write(f"{i},{j},{item*acoef}\n")
             j += 1
           i += 1
@@ -257,7 +258,7 @@ class Matrix_Formulation_Class(QObject):
           # loop through the columns of the row and write each element to the file
           j=0
           for item in row:
-            if float(item) != 0.0:
+            if not math.isclose(float(item), 0.0, rel_tol=1e-09, abs_tol=0.0):
               f_B.write(f"{i},{j},{item*bcoef}\n")
             j += 1
           i += 1
@@ -271,7 +272,7 @@ class Matrix_Formulation_Class(QObject):
           # loop through the columns of the row and write each element to the file
           j=0
           for item in row:
-            if float(item) != 0.0:
+            if not math.isclose(float(item), 0.0, rel_tol=1e-09, abs_tol=0.0):
               f_L.write(f"{i},{j},{item}\n")
             j += 1
           i += 1
