@@ -5,6 +5,7 @@ import subprocess
 import traceback
 import time
 from PyQt5.QtCore import QObject, pyqtSignal
+from security import safe_command
 
 os.system("")
 
@@ -64,7 +65,7 @@ class Spice_Parser_Class(QObject):
             f_new.write(line)
 
       exec_path = os.path.join(self.INSTALLATION_FOLDER, "bin/circuit_simulation")
-      result=subprocess.run([exec_path,spice_file])
+      result=safe_command.run(subprocess.run, [exec_path,spice_file])
       if self.interrupted:
         os.remove(DC_analysis_filename)
         return
