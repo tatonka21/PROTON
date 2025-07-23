@@ -9,6 +9,7 @@ import sys
 import array
 from PyQt5.QtCore import QObject, pyqtSignal
 import subprocess
+from security import safe_command
 
 os.system("")
 
@@ -92,9 +93,9 @@ class Analytical_Class(QObject):
     if not self.IS_LINUX:
       si = subprocess.STARTUPINFO()
       si.dwFlags |= subprocess.STARTF_USESHOWWINDOW
-      return_value = subprocess.call(f"{source_command}{exec_path} {config_file}", startupinfo=si)
+      return_value = safe_command.run(subprocess.call, f"{source_command}{exec_path} {config_file}", startupinfo=si)
     else:
-      return_value = subprocess.call(f"{source_command}{exec_path} {config_file}")
+      return_value = safe_command.run(subprocess.call, f"{source_command}{exec_path} {config_file}")
     # return_value = os.system(f"{source_command}{exec_path} {config_file}")
     
     elapsed_time = time.time() - start_time

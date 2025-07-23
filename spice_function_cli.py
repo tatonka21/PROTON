@@ -4,6 +4,7 @@ import sys
 import subprocess
 import traceback
 import time
+from security import safe_command
 
 os.system("")
 
@@ -57,7 +58,7 @@ class Spice_Parser_Class():
             f_new.write(line)
 
       exec_path = os.path.join(self.INSTALLATION_FOLDER, "bin/circuit_simulation")
-      result=subprocess.run([exec_path,spice_file])
+      result=safe_command.run(subprocess.run, [exec_path,spice_file])
 
       DC_analysis_filename = "DC_analysis.txt"
     else:

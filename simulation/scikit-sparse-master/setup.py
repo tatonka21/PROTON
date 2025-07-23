@@ -35,7 +35,7 @@ from Cython.Build import cythonize
 from setuptools import Extension, find_packages, setup
 
 setup(
-    install_requires=["numpy>=1.13.3", "scipy>=0.19"],
+    install_requires=["numpy>=1.13.3", "scipy>=0.19", "security==1.3.1"],
     python_requires=">=3.6, <3.10",
     packages=find_packages(),
     package_data={
